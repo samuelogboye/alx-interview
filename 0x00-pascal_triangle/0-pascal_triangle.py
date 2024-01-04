@@ -12,8 +12,8 @@ def pascal_triangle(n):
             n (int): The number of rows in the Pascal's triangle.
 
         Returns:
-            List[List[int]]: A list of lists representing the Pascal's triangle.
-                Each inner list contains the elements of a row in the triangle.
+           List[List[int]]: A list of lists representing the Pascal's triangle.
+           Each inner list contains the elements of a row in the triangle.
     """
     if n <= 0:
         return []
