@@ -2,6 +2,8 @@
 """
 0x01. Lockboxes
 """
+
+
 def canUnlockAll(boxes):
     """
     Determines if all the boxes in the given list can be unlocked.
