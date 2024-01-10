@@ -1,5 +1,17 @@
 #!/usr/bin/python3
+"""
+0x01. Lockboxes
+"""
 def canUnlockAll(boxes):
+    """
+    Determines if all the boxes in the given list can be unlocked.
+
+    Parameters:
+    - boxes (list): A list of lists representing the boxes and their keys.
+
+    Returns:
+    - bool: True if all the boxes can be unlocked, False otherwise.
+    """
     if not boxes:
         return False
 
