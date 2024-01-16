@@ -11,7 +11,7 @@ def minOperations(n):
     Returns:
         int: The minimum number of operations required.
     """
-    if n <= 1:
+    if n <= 1 or n is None or type(n) is not int:
         return 0
     operations = 0
     while n > 1:
