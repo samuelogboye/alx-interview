@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """Minimum Operations"""
-import math
-
-
 from math import isqrt
+
 
 def factors(n):
     """
