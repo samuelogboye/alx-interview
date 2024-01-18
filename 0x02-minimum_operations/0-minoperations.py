@@ -1,23 +1,27 @@
 #!/usr/bin/python3
 """Minimum Operations"""
+import math
+
+
+def factors(n):
+    """factors of n number"""
+    mylist = []
+    while n % 2 == 0:
+        mylist.append(2)
+        n = n / 2
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        while n % i == 0:
+            mylist.append(i)
+            n = n / i
+    if n > 2:
+        mylist.append(n)
+    return mylist
 
 
 def minOperations(n):
-    """
-    Calculates the minimum number of operations required
-    to reduce a given number to 1.
-    Parameters:
-        n (int): The number to be reduced.
-    Returns:
-        int: The minimum number of operations required.
-    """
-    if n <= 1 or n is None or type(n) is not int:
+    """calculate the minimum operations"""
+    if type(n) != int or n < 2:
         return 0
-    operations = 0
-    while n > 1:
-        if n % 2 == 0:
-            n = n / 2
-        else:
-            n -= 1
-        operations += 1
-    return operations
+    else:
+        numOperations = sum(factors(n))
+        return int(numOperations)
