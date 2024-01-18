@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Minimum Operations"""
 from math import isqrt
-import math
 
 
 def factors(n):
@@ -9,7 +8,8 @@ def factors(n):
     Calculates the factors of a given number.
 
     Parameters:
-        n (int): The number for which factors need to be calculated.
+        n (int): The number for which factors need
+        to be calculated.
 
     Returns:
         list: A list of factors of the given number.
@@ -17,11 +17,11 @@ def factors(n):
     mylist = []
     while n % 2 == 0:
         mylist.append(2)
-        n = n / 2
-    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        n //= 2
+    for i in range(3, isqrt(n) + 1, 2):
         while n % i == 0:
             mylist.append(i)
-            n = n / i
+            n //= i
     if n > 2:
         mylist.append(n)
     return mylist
@@ -29,7 +29,8 @@ def factors(n):
 
 def minOperations(n):
     """
-    Calculates the minimum number of operations required to transform a given number into 1.
+    Calculates the minimum number of operations required to
+    transform a given number into 1.
 
     Parameters:
     n (int): The number to be transformed.
