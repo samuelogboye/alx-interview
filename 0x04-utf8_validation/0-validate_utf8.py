@@ -10,19 +10,23 @@ def validUTF8(data):
     :param data: list of integers representing the bytes of the data
     :return: True if the data is a valid UTF-8 encoding, False otherwise
     """
-    count = 0
-    for byte in data:
-        if count == 0:
-            if (byte >> 5) == 0b110:
-                count = 1
-            elif (byte >> 4) == 0b1110:
-                count = 2
-            elif (byte >> 3) == 0b11110:
-                count = 3
-            elif (byte >> 7):
+    nbytes = 0
+
+    b1 = 1 << 7
+    b2 = 1 << 6
+
+    for i in data:
+        b = 1 << 7
+        if nbytes == 0:
+            while b & i:
+                nbytes += 1
+                b = b >> 1
+            if nbytes == 0:
+                continue
+            if nbytes == 1 or nbytes > 4:
                 return False
         else:
-            if (byte >> 6) != 0b10:
+            if not (i & b1 and not (i & b2)):
                 return False
-            count -= 1
-    return count == 0
+        nbytes -= 1
+    return nbytes == 0
