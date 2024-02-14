@@ -14,9 +14,14 @@ request(filmURL + filmNum, async function (err, res, body) {
 
   // Iterate through the list of character URLs
   for (const charURL of charURLList) {
-    request(charURL, function (err, res, body) {
-      if (err) return console.error(err);
-      console.log(JSON.parse(body).name);
+    await new Promise(function (resolve, reject) {
+      request(charURL, function (err, res, body) {
+        if (err) return console.error(err);
+
+        // Parse the charcter nformation and print the character's name Resolve the promise to indicate completion
+        console.log(JSON.parse(body).name);
+        resolve();
+      });
     });
   }
 });
