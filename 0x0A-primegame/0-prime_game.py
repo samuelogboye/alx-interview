@@ -4,10 +4,11 @@
 
 def isWinner(x, nums):
     """ Check winner of a game """
-    if x is None or nums is None:
-        raise ValueError('x and nums must be non-null')
-    if not nums:
+    if x < 1 or not nums:
         return None
+
+    maria_success = 0
+    ben_success = 0
 
     n = max(nums)
     primes = [True] * (n + 1)
@@ -16,17 +17,15 @@ def isWinner(x, nums):
         if primes[i]:
             for j in range(i * i, n + 1, i):
                 primes[j] = False
-    primes_count = [0] * (n + 1)
-    count = 0
-    for i in range(1, n + 1):
-        if primes[i]:
-            count += 1
-            primes_count[i] = count
-    # print(primes_count)
-    player = 0
-    for i in nums:
-        if i not in primes_count:
-            raise ValueError('nums must contain only positive integers <= n')
-        player ^= primes_count[i] % 2
 
-    return "Maria" if player else "Ben"
+    for n in nums:
+        count = sum(primes[2:n + 1])
+        if count % 2 == 0:
+            ben_success += 1
+        else:
+            maria_success += 1
+
+    if maria_success == ben_success:
+        return None
+
+    return "Maria" if maria_success > ben_success else "Ben"
